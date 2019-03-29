@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>title</title>
+  <meta name="author" content="name">
+  <meta name="description" content="description here">
+  <meta name="keywords" content="keywords,here">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+  <title></title>
+  </head>
+  <body>
+    <h1>balls</h1>
+  <script>
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://ceu-tab-out.herokuapp.com/auth",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json",
+      "cache-control": "no-cache",
+      "Postman-Token": "9e60fb6e-9b03-4f75-a470-190e742890cb"
+    },
+    "processData": false,
+    "data": "{\n\t\"username\": \"Eggs\",\n\t\"password\": \"asdf\"\n}"
+  }
+
+// function loadData() {
+  var day =  $.ajax(settings).done(function (response) {
+    // console.log(response);
+    // console.log(response.access_token);
+  });
+
+// var data = $.getJSON(`https://marketdata.websol.barchart.com/getHistory.json?apikey=894fd77b8ce91b70a2a5b31367fc02e8&symbol=${stock}&type=minutes&startDate=20180101&endDate=20180301&maxRecords=20&interval=60&order=asc&sessionFilter=EFK&splits=true&dividends=true&volume=sum&nearby=1&jerq=true&exchange=NYSE%2CAMEX%2CNASDAQ&backAdjust=false&daysToExpiration=1&contractRoll=expiration`)
+//   .done(function(data){
+//   var close = data.results[0].close;
+// }
+
+var settings1 = {
+"async": true,
+"crossDomain": true,
+"url": "https://ceu-tab-out.herokuapp.com/items",
+"method": "GET",
+"headers": {
+  "Content-Type": "application/json",
+  "cache-control": "no-cache",
+  "Postman-Token": "f463a282-0e9b-49fb-afa5-ac1775a8f9e1"
+},
+"processData": true,
+"data": ""
+}
+
+var data = $.ajax(settings1).done(function (response) {
+console.log(response);
+});
+
+
+
+
+  // loadData();
+  </script>
+  </body>
+</html>
