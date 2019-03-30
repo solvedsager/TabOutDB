@@ -10,11 +10,85 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <script>
 
-  <title></title>
+  </script>
+  <title>Tip Calculator</title>
   </head>
   <body>
-    <h1>balls</h1>
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Send</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">History</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li> -->
+    </ul>
+
+      <h1 style="border:2px solid black; text-align:center; margin:20px 40px; padding:10px;">Tip Calculator</h1>
+
+  <br>
+
+
+
+        <form>
+          <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" id= "item" name="item" placeholder="First name">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" id="price" name="price" placeholder="Last name">
+            </div>
+          </div>
+          <!-- <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="First name">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Last name">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="First name">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Last name">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="First name">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Last name">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="First name">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Last name">
+            </div> -->
+          </div>
+        </form>
+
+        <div style="text-align:center; margin: 10px 0;">
+          <button type="submit"  class="btn btn-primary">Submit</button>
+        </div>
+
+        <div class="card-footer">
+          2 days ago
+        </div>
+      </div>
+
   <script>
   var settings = {
     "async": true,
@@ -41,23 +115,53 @@
 //   var close = data.results[0].close;
 // }
 
-var settings1 = {
-"async": true,
-"crossDomain": true,
-"url": "https://ceu-tab-out.herokuapp.com/items",
-"method": "GET",
-"headers": {
-  "Content-Type": "application/json",
-  "cache-control": "no-cache",
-  "Postman-Token": "f463a282-0e9b-49fb-afa5-ac1775a8f9e1"
-},
-"processData": true,
-"data": ""
+//somehow implement callback
+function getRequest(callback, item, price) {
+  var settings1 = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://ceu-tab-out.herokuapp.com/items",
+  "method": "GET",
+  "headers": {
+    "Content-Type": "application/json",
+    "cache-control": "no-cache",
+    "Postman-Token": "f463a282-0e9b-49fb-afa5-ac1775a8f9e1"
+  },
+  "processData": true,
+  "dataType":"json",
+  "data": ""
+  }
+
+  var data = $.ajax(settings1).done(function (response) {
+  console.log(response);
+  });
+  // var newItem = data.items.items[0].name;
+  // console.log(newItem);
+  callback(data);
 }
 
-var data = $.ajax(settings1).done(function (response) {
-console.log(response);
+function getData(item, price) {
+  getRequest(function(data) {
+    console.log(data);
+  }, item, price);
+}
+
+
+//toggle navbar
+
+$('.nav a').click(function(){
+  $(this).toggleClass('active');
 });
+
+//submit item and price
+$('.btn').click(function() {
+  var item = document.getElementById("item").value;
+  var price = document.getElementById("price").value;
+  // document.getElementById("search").innerHTML = heading;
+  console.log(item + " " + price);
+  getData(item, price);
+})
+
 
 
 
