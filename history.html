@@ -21,10 +21,10 @@
         <a class="nav-link" href="home.html">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="python.html">Send</a>
+        <a class="nav-link" href="python.html">Send</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="history.html">History</a>
+        <a class="nav-link active" href="history.html">History</a>
       </li>
       <!-- <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -35,9 +35,36 @@
 
   <br>
 
+  <table class="table">
+<thead class="thead-dark">
+<tr>
+<th scope="col">#</th>
+<th scope="col">Item</th>
+<th scope="col">Price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">1</th>
+<td><p id="item"></p></td>
+<td><p id="price"></p></td>
+</tr>
+<tr>
+<th scope="row">2</th>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th scope="row">3</th>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
 
-        <form>
+
+        <!-- <form>
           <div class="row">
             <div class="col">
               <input type="text" class="form-control" id= "item" name="item" placeholder="First name">
@@ -45,7 +72,7 @@
             <div class="col">
               <input type="text" class="form-control" id="price" name="price" placeholder="Last name">
             </div>
-          </div>
+          </div> -->
           <!-- <div class="row">
             <div class="col">
               <input type="text" class="form-control" placeholder="First name">
@@ -77,8 +104,8 @@
             <div class="col">
               <input type="text" class="form-control" placeholder="Last name">
             </div> -->
-          </div>
-        </form>
+          <!-- </div>
+        </form> -->
 
         <div style="text-align:center; margin: 10px 0;">
           <button type="submit"  class="btn btn-primary">Submit</button>
@@ -144,6 +171,10 @@ function getData(item, price) {
   getRequest(function(data) {
     console.log(data);
     var newItem = data.items[0].name;
+    var newPrice = data.items[0].price;
+    console.log(newItem);
+    document.getElementById("item").innerHTML += newItem;
+    document.getElementById("price").innerHTML += newPrice;
     console.log(newItem);
   }, item, price);
 }
@@ -151,9 +182,9 @@ function getData(item, price) {
 
 //toggle navbar
 
-$('.nav a').click(function(){
-  $(this).toggleClass('active');
-});
+// $('.nav a').click(function(){
+//   $(this).toggleClass('active');
+// });
 
 //submit item and price
 $('.btn').click(function() {
